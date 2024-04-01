@@ -1,0 +1,48 @@
+{% load static %}
+
+<!DOCTYPE html>
+
+<html lang="en">
+    <head>
+       
+        <title>{% block title %}
+             
+            {% endblock %}</title>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+        <link href="{% static 'encyclopedia/styles.css' %}" rel="stylesheet">
+    </head>
+    <body>
+        <div class="row">
+            <div class="sidebar col-lg-2 col-md-3">
+                <h2>Wiki</h2>
+                <form action="{% url 'search_results'%}" method="get">
+                    <input style="border: none;" class="search" type="text" name="q" placeholder="Search Encyclopedia">
+                                     
+                    <button style="margin-bottom: 20px; border: none; padding: 10px; " type="submit">Search</button>
+                </form>   
+                    <form action="{% url 'index' %}">
+                 <button style="margin-bottom: 20px;  padding: 10px; " type="submit" name ='Home'>Home</a></button>  
+                </form>
+              
+                    <form action="{% url 'create_new' %}" title="title"> 
+                    <button style="margin-bottom: 20px;  padding: 10px; "  type="submit" name="create_new">Create New Page</button>
+                </form>
+
+                    <form action="{% url 'random_page' %}" > 
+                 <button style="margin-bottom: 20px;  padding: 10px; "  type="submit" name="random_page">Random Page</button>
+                 </form>
+         
+                {% block nav %}
+                {% endblock %}
+            </div>
+            <div class="main col-lg-10 col-md-9">
+    
+                {% block body %}
+                {{ body_content}}
+                {% endblock %}
+
+            </div>
+        </div>
+
+    </body>
+</html>
