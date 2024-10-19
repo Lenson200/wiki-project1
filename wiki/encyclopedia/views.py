@@ -61,7 +61,7 @@ def edit_content(request, title):
         return redirect(reverse("entry_detail", args=[title]))
 
     return render(request, "encyclopedia/edit.html", {'content': content, 'title': title})
-#generates a random page everytime its clicked
+#generates a random page everytime its called
 def random_page(request):
     entries = util.list_entries()
     random_title = entries[randint(0, len(entries)-1)]
